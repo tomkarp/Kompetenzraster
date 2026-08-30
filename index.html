@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kompetenzraster</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="fileDropOverlay" aria-hidden="true">JSON-Datei hier ablegen</div>
+  <header class="app-header">
+    <div class="header-title-area">
+      <h1 id="headerTitle">Kompetenzraster</h1>
+      <label class="title-field editing-control">Titel <input id="titleInput" type="text"></label>
+      <span id="saveState" class="save-state editing-control" aria-live="polite">Lokal gespeichert</span>
+    </div>
+    <div class="header-actions editing-control">
+      <button id="newButton" class="secondary editing-control">Neues Raster</button>
+      <button id="importButton" class="secondary editing-control">JSON importieren</button>
+      <button id="exportButton">Export</button>
+      <button id="helpButton" class="secondary" aria-label="Hilfe" title="Hilfe">?</button>
+      <input id="importFile" type="file" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="Rasterverwaltung">
+      <div class="toolbar-actions">
+        <div class="edit-actions">
+          <button id="addAreaButton" class="secondary">+ Kompetenzbereich</button>
+          <button id="addLevelButton" class="secondary">+ Kompetenzstufe</button>
+        </div>
+        <div class="view-options" aria-label="Ansicht">
+          <span class="view-label">Ansicht</span>
+          <button id="materialsToggleButton" class="view-toggle active" aria-pressed="true" aria-label="Material anzeigen" title="Material anzeigen">▤</button>
+          <button id="notesToggleButton" class="view-toggle active" aria-pressed="true" aria-label="Bemerkungen anzeigen" title="Bemerkungen anzeigen">≡</button>
+          <button id="dependencyToggleButton" class="view-toggle" aria-pressed="false" aria-label="Abhängigkeiten anzeigen" title="Abhängigkeiten anzeigen">⇢</button>
+          <button id="presentationToggleButton" class="view-toggle" aria-pressed="false" aria-label="Präsentationsmodus aktivieren" title="Präsentationsmodus aktivieren">▣</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="board" class="board" aria-label="Kompetenzraster"></section>
+    <p id="hint" class="hint"></p>
+  </main>
+
+  <dialog id="exportDialog">
+    <form method="dialog" class="dialog-form export-dialog">
+      <div class="dialog-header"><h2>Export</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <p class="field-help">Wähle ein Format für das aktuelle Kompetenzraster.</p>
+      <div class="export-options">
+        <button type="button" data-export="html">HTML-Tabelle</button>
+        <button type="button" data-export="markdown">Markdown-Tabelle</button>
+        <button type="button" data-export="json">JSON <small>Export- und Import-Format</small></button>
+        <button type="button" data-export="link">Link <small>aktuellen Zustand teilen</small></button>
+      </div>
+      <label class="readonly-option"><input id="readonlyLink" type="checkbox"> Geteilten Link im Readonly-Modus erstellen</label>
+    </form>
+  </dialog>
+
+  <dialog id="helpDialog">
+    <form method="dialog" class="dialog-form">
+      <div class="dialog-header"><h2>Hilfe</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <p><strong>Drag-and-drop:</strong> Kompetenzen lassen sich zwischen den Zellen verschieben.</p>
+      <p><strong>⇣</strong> Voraussetzung für diese Kompetenz auswählen.</p>
+      <p><strong>⇡</strong> Diese Kompetenz als Voraussetzung für die nächste auswählen.</p>
+      <p>Die Ansichtsoptionen verändern nur die Darstellung. Änderungen am Raster werden lokal gespeichert.</p>
+    </form>
+  </dialog>
+
+  <dialog id="competencyDialog">
+    <form method="dialog" id="competencyForm" class="dialog-form">
+      <div class="dialog-header"><h2 id="competencyDialogTitle">Kompetenz</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <input id="competencyId" type="hidden">
+      <label>Formulierung <textarea id="competencyText" rows="3" required placeholder="Ich kann ..."></textarea></label>
+      <label>Material <textarea id="competencyMaterials" rows="2" placeholder="Links oder Hinweise"></textarea></label>
+      <label>Bemerkungen <textarea id="competencyNotes" rows="2"></textarea></label>
+      <fieldset>
+        <legend>Voraussetzungen</legend>
+        <p class="field-help">Klicke die Kompetenzen an, die vorher beherrscht werden sollen.</p>
+        <div id="prerequisiteList" class="prerequisite-list"></div>
+      </fieldset>
+      <div class="dialog-actions">
+        <button type="button" id="deleteCompetencyButton" class="danger">Kompetenz löschen</button>
+        <span></span><button value="cancel" class="secondary">Abbrechen</button><button id="saveCompetencyButton" value="default">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="textDialog">
+    <form method="dialog" id="textForm" class="dialog-form">
+      <div class="dialog-header"><h2 id="textDialogTitle">Bearbeiten</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <label>Name <input id="textInput" type="text" required></label>
+      <div class="dialog-actions"><button type="button" id="deleteTextButton" class="danger">Löschen</button><span></span><button value="cancel" class="secondary">Abbrechen</button><button value="default">Speichern</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
