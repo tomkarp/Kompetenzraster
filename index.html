@@ -32,8 +32,6 @@
         </div>
         <div class="view-options" aria-label="Ansicht">
           <span class="view-label">Ansicht</span>
-          <button id="materialsToggleButton" class="view-toggle active" aria-pressed="true" aria-label="Material anzeigen" title="Material anzeigen">▤</button>
-          <button id="notesToggleButton" class="view-toggle active" aria-pressed="true" aria-label="Bemerkungen anzeigen" title="Bemerkungen anzeigen">≡</button>
           <button id="dependencyToggleButton" class="view-toggle" aria-pressed="false" aria-label="Abhängigkeiten anzeigen" title="Abhängigkeiten anzeigen">⇢</button>
           <button id="presentationToggleButton" class="view-toggle" aria-pressed="false" aria-label="Präsentationsmodus aktivieren" title="Präsentationsmodus aktivieren">▣</button>
         </div>
@@ -46,7 +44,7 @@
 
   <dialog id="exportDialog">
     <form method="dialog" class="dialog-form export-dialog">
-      <div class="dialog-header"><h2>Export</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <div class="dialog-header"><h2>Export</h2><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
       <p class="field-help">Wähle ein Format für das aktuelle Kompetenzraster.</p>
       <div class="export-options">
         <button type="button" data-export="html">HTML-Tabelle</button>
@@ -60,7 +58,7 @@
 
   <dialog id="helpDialog">
     <form method="dialog" class="dialog-form">
-      <div class="dialog-header"><h2>Hilfe</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <div class="dialog-header"><h2>Hilfe</h2><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
       <p><strong>Drag-and-drop:</strong> Kompetenzen lassen sich zwischen den Zellen verschieben.</p>
       <p><strong>⇣</strong> Voraussetzung für diese Kompetenz auswählen.</p>
       <p><strong>⇡</strong> Diese Kompetenz als Voraussetzung für die nächste auswählen.</p>
@@ -70,7 +68,7 @@
 
   <dialog id="competencyDialog">
     <form method="dialog" id="competencyForm" class="dialog-form">
-      <div class="dialog-header"><h2 id="competencyDialogTitle">Kompetenz</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <div class="dialog-header"><h2 id="competencyDialogTitle">Kompetenz</h2><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
       <input id="competencyId" type="hidden">
       <label>Formulierung <textarea id="competencyText" rows="3" required placeholder="Ich kann ..."></textarea></label>
       <label>Material <textarea id="competencyMaterials" rows="2" placeholder="Links oder Hinweise"></textarea></label>
@@ -82,16 +80,25 @@
       </fieldset>
       <div class="dialog-actions">
         <button type="button" id="deleteCompetencyButton" class="danger">Kompetenz löschen</button>
-        <span></span><button value="cancel" class="secondary">Abbrechen</button><button id="saveCompetencyButton" value="default">Speichern</button>
+        <span></span><button type="button" data-dialog-cancel class="secondary">Abbrechen</button><button id="saveCompetencyButton" value="default">Speichern</button>
       </div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog">
+    <form method="dialog" class="dialog-form detail-dialog">
+      <div class="dialog-header"><span></span><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
+      <div id="detailDialogContext" class="detail-context"></div>
+      <div id="detailDialogContent" class="detail-content"></div>
+      <div class="dialog-actions"><span></span><span></span><span></span><button type="button" data-dialog-cancel class="secondary">Schließen</button></div>
     </form>
   </dialog>
 
   <dialog id="textDialog">
     <form method="dialog" id="textForm" class="dialog-form">
-      <div class="dialog-header"><h2 id="textDialogTitle">Bearbeiten</h2><button value="cancel" class="icon-button" aria-label="Schließen">×</button></div>
+      <div class="dialog-header"><h2 id="textDialogTitle">Bearbeiten</h2><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
       <label>Name <input id="textInput" type="text" required></label>
-      <div class="dialog-actions"><button type="button" id="deleteTextButton" class="danger">Löschen</button><span></span><button value="cancel" class="secondary">Abbrechen</button><button value="default">Speichern</button></div>
+      <div class="dialog-actions"><button type="button" id="deleteTextButton" class="danger">Löschen</button><span></span><button type="button" data-dialog-cancel class="secondary">Abbrechen</button><button value="default">Speichern</button></div>
     </form>
   </dialog>
 
