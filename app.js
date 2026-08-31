@@ -44,6 +44,12 @@ function render() {
   setViewToggle("materialsToggleButton", showMaterials, "Material");
   setViewToggle("notesToggleButton", showNotes, "Bemerkungen");
   $("presentationToggleButton").hidden = presentationLocked;
+  const hasDependencies = data.competencies.some(competency => (competency.prerequisites || []).length > 0);
+  const hasMaterials = data.competencies.some(competency => Boolean(competency.materials?.trim()));
+  const hasNotes = data.competencies.some(competency => Boolean(competency.notes?.trim()));
+  $("dependencyToggleButton").hidden = presentationMode && !hasDependencies;
+  $("materialsToggleButton").hidden = presentationMode && !hasMaterials;
+  $("notesToggleButton").hidden = presentationMode && !hasNotes;
   document.querySelectorAll(".editing-control").forEach(el => { el.hidden = presentationMode; });
   $("addAreaButton").hidden = presentationMode; $("addLevelButton").hidden = presentationMode;
   const board = $("board"); board.style.setProperty("--level-count", data.levels.length); board.replaceChildren();
