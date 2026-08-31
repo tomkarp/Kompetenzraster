@@ -8,6 +8,12 @@
 </head>
 <body>
   <div id="fileDropOverlay" aria-hidden="true">JSON-Datei hier ablegen</div>
+  <svg class="icon-definitions" aria-hidden="true"><defs>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 5.5C10.4 4.1 8.2 3.5 5 3.5H3v15h2c3.2 0 5.4.6 7 2 1.6-1.4 3.8-2 7-2h2v-15h-2c-3.2 0-5.4.6-7 2Z"/><path d="M12 5.5v15"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 10.5v6M12 7.5h.01"/></symbol>
+    <symbol id="icon-dependency" viewBox="0 0 24 24"><path d="M4 12h16M15 7l5 5-5 5"/></symbol>
+    <symbol id="icon-presentation" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M8 21h8M12 18v3"/></symbol>
+  </defs></svg>
   <header class="app-header">
     <div class="header-title-area">
       <h1 id="headerTitle">Kompetenzraster</h1>
@@ -30,10 +36,11 @@
           <button id="addAreaButton" class="secondary">+ Kompetenzbereich</button>
           <button id="addLevelButton" class="secondary">+ Kompetenzstufe</button>
         </div>
-        <div class="view-options" aria-label="Ansicht">
-          <span class="view-label">Ansicht</span>
-          <button id="dependencyToggleButton" class="view-toggle" aria-pressed="false" aria-label="Abhängigkeiten anzeigen" title="Abhängigkeiten anzeigen">⇢</button>
-          <button id="presentationToggleButton" class="view-toggle" aria-pressed="false" aria-label="Präsentationsmodus aktivieren" title="Präsentationsmodus aktivieren">▣</button>
+        <div class="view-options" aria-label="Darstellungsoptionen">
+          <button id="dependencyToggleButton" class="view-toggle" aria-pressed="false" aria-label="Abhängigkeiten anzeigen" title="Abhängigkeiten anzeigen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M15 7l5 5-5 5"/></svg></button>
+          <button id="materialsToggleButton" class="view-toggle" aria-pressed="false" aria-label="Material anzeigen" title="Material anzeigen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5C10.4 4.1 8.2 3.5 5 3.5H3v15h2c3.2 0 5.4.6 7 2 1.6-1.4 3.8-2 7-2h2v-15h-2c-3.2 0 5.4.6 7 2Z"/><path d="M12 5.5v15"/></svg></button>
+          <button id="notesToggleButton" class="view-toggle" aria-pressed="false" aria-label="Bemerkungen anzeigen" title="Bemerkungen anzeigen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 10.5v6M12 7.5h.01"/></svg></button>
+          <button id="presentationToggleButton" class="view-toggle" aria-pressed="false" aria-label="Präsentationsmodus aktivieren" title="Präsentationsmodus aktivieren"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M8 21h8M12 18v3"/></svg></button>
         </div>
       </div>
     </section>
