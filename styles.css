@@ -60,4 +60,6 @@ dialog { width: min(650px, calc(100% - 24px)); padding: 0; border: 0; border-rad
 .card-extra a { color: var(--blue); }
 .card-extra { display: flex; align-items: flex-start; gap: 6px; }
 .card-extra-icon svg { display: block; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.card-tools { top: 50%; transform: translateY(-50%); }
+.card-tools { top: auto; right: auto; bottom: 5px; left: 50%; transform: translateX(-50%); }
 .icon-definitions { position: absolute; width: 0; height: 0; overflow: hidden; }
