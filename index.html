@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kompetenzraster</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="vendor/pdfmake.min.js"></script>
+  <script src="vendor/vfs_fonts.js"></script>
+  <script src="vendor/docx.iife.js"></script>
 </head>
 <body>
   <div id="fileDropOverlay" aria-hidden="true">JSON-Datei hier ablegen</div>
@@ -54,12 +57,39 @@
       <div class="dialog-header"><h2>Export</h2><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
       <p class="field-help">Wähle ein Format für das aktuelle Kompetenzraster.</p>
       <div class="export-options">
+        <button type="button" data-export="json">JSON <small>Export- und Import-Format</small></button>
+        <button type="button" data-export="pdf">PDF <small>PDF mit Einstellungen herunterladen</small></button>
+        <button type="button" data-export="docx">Word <small>Word-Dokument mit Einstellungen herunterladen</small></button>
         <button type="button" data-export="html">HTML-Tabelle</button>
         <button type="button" data-export="markdown">Markdown-Tabelle</button>
-        <button type="button" data-export="json">JSON <small>Export- und Import-Format</small></button>
         <button type="button" data-export="link">Link <small>aktuellen Zustand teilen</small></button>
       </div>
       <label class="readonly-option"><input id="readonlyLink" type="checkbox"> Geteilten Link im Readonly-Modus erstellen</label>
+    </form>
+  </dialog>
+
+  <dialog id="pdfDialog">
+    <form method="dialog" class="dialog-form pdf-dialog">
+      <div class="dialog-header"><h2 id="documentExportTitle">PDF-Export</h2><button type="button" data-dialog-cancel class="icon-button" aria-label="Schließen">×</button></div>
+      <div class="pdf-settings-grid">
+        <label>Titel <input id="pdfTitle" type="text"></label>
+        <label>Untertitel <input id="pdfSubtitle" type="text" placeholder="Optional"></label>
+        <label>Autor <input id="pdfAuthor" type="text" placeholder="Optional"></label>
+        <label>Datum <input id="pdfDate" type="date"></label>
+        <label>Papierformat <select id="pdfPageSize"><option value="A4">A4</option><option value="A3">A3</option></select></label>
+        <label>Ausrichtung <select id="pdfOrientation"><option value="landscape">Querformat</option><option value="portrait">Hochformat</option></select></label>
+      </div>
+      <fieldset>
+        <legend>Inhalt</legend>
+        <div class="pdf-checkboxes">
+          <label><input id="pdfIncludeMaterials" type="checkbox"> Material</label>
+          <label><input id="pdfIncludeNotes" type="checkbox"> Bemerkungen</label>
+          <label><input id="pdfIncludeDependencies" type="checkbox"> Voraussetzungen</label>
+          <label><input id="pdfUseColors" type="checkbox" checked> Farben verwenden</label>
+          <label><input id="pdfIncludePageNumbers" type="checkbox" checked> Seitenzahlen</label>
+        </div>
+      </fieldset>
+      <div class="dialog-actions"><span></span><span></span><button type="button" data-dialog-cancel class="secondary">Abbrechen</button><button id="createDocumentButton" value="default">PDF herunterladen</button></div>
     </form>
   </dialog>
 
